@@ -17,7 +17,6 @@ export function mediaTemplate(media) {
     const options = ["Popularité", "Date", "Titre"];
     options.forEach((optionText) => {
       const option = document.createElement("option");
-      option.value = optionText.toLowerCase();
       option.textContent = optionText;
       select.appendChild(option);
     });
