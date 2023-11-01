@@ -66,7 +66,6 @@ export function photographerTemplate(photographers) {
   
     return  article ;
   }
-  
 
   return {name,picture,city,tagline,price,getUserCardDOM,getPhotographersHeader, };
 }
