@@ -2,42 +2,78 @@
 <html>
   <head>
     <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="/public/assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/public/assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
       <a href="index.html" alt="page d'accueil">
-      <img src="/public/assets/images/logo.png" class="logo" /></a>
+        <img src="/public/assets/images/logo.png" class="logo"
+      /></a>
     </header>
     <main id="main">
       <div class="photograph-header">
         <div class="photograph-info"></div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()">
+          Contactez-moi
+        </button>
       </div>
-      <div class="factoryMedia">
-        
-      </div>
-
+      <div class="factoryMedia"></div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
-				<header>
+				<header class="modalHeader">
           <h2>Contactez-moi</h2>
           <img src="/public/assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form id="contactForm">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label class="label">Prénom</label>
+						<input type="text" class="inputName">
+
+            <label class="label">Nom</label>
+						<input type="text" class="inputFirstName" />
+
+            <label class="label">Email</label>
+						<input type="email" class="inputEmail">
+
+            <label class="label">Votre message</label>
+						<textarea class="textArea"></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" onclick="contactForm()" >Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="carouselModal" class="carouselModal">
+      <!-- Modal content -->
+      <div class="carouselModalContent">
+        <div class="containerBtn">
+          <button class="previousBtn">
+            <i class="fas fa-chevron-left"></i> 
+          </button>
+          <button class="nextBtn">
+             <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="currentMedia"></div>
+        <div class="closeBtn">
+          <span class="close" id="closeModalBtn">&times;</span>
+        </div>
+      </div>
+    </div>
+    <div id="like"></div>
     <script type="module" src="/scripts/pages/photographer.js"></script>
-    <script type="module" src="/scripts/utils/contactForm.js"></script>
+    <script  src="/scripts/utils/contactForm.js"></script>
+    <script  src="/scripts/templates/contactForm.js"></script>
   </body>
 </html>

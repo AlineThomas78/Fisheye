@@ -1,6 +1,7 @@
 import { getPhotographers } from "../pages/index.js";
 import { photographerTemplate } from "../templates/photographer.js";
 import { mediaTemplate } from "../templates/media.js";
+import { displayMedia } from "../templates/modal.js";
 
 // Récupération de l'ID du photographe à partir des paramètres de recherche
 const params = new URLSearchParams(window.location.search);
@@ -41,6 +42,8 @@ initHeader();
 
 async function factoryMedia() {
   try {
+
+
     const data = await getPhotographers();
     const mediaContainer = document.querySelector(".factoryMedia");
 
@@ -54,7 +57,7 @@ async function factoryMedia() {
     );
     // console.log(photographerMedia)
 
-    // Créer la section de tri et ajoute à la factoryMedia
+    // Créer la section de tri et ajouter à la factoryMedia
     const mediaInstance = mediaTemplate(photographerMedia);
     const sortSection = mediaInstance.createSortSection();
     mediaContainer.appendChild(sortSection);
@@ -62,10 +65,56 @@ async function factoryMedia() {
     const articleSection = document.createElement("div");
     articleSection.classList.add("article-section");
 
-    photographerMedia.forEach((media) => {
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      closeModalBtn.addEventListener('click', () => {
+       
+        const carouselModal = document.querySelector(".carouselModal")
+        carouselModal.style.display = "none";
+        
+      })
+      let totalLike = 0;
+    photographerMedia.forEach((media, mediaIndex) => {
+      totalLike+= media.likes;
       const mediaElement = mediaTemplate(media).displayMedia();
       articleSection.appendChild(mediaElement);
-    });console.log(photographerMedia)
+      
+      
+      // Ajoutez un gestionnaire de clic pour chaque image
+      mediaElement.firstElementChild.addEventListener("click", () => {
+        const carouselModal = document.querySelector(".carouselModal")
+        carouselModal.style.display = "flex";
+        console.log(mediaIndex);
+        displayMedia(mediaIndex, photographerMedia);
+        const previousBtn = document.querySelector('.previousBtn');
+        const nextBtn = document.querySelector('.nextBtn');
+
+        let currentIndex = mediaIndex;
+        previousBtn.addEventListener('click', () => {
+          console.log(mediaIndex);
+          if(currentIndex -1 < 0){
+            currentIndex = photographerMedia.length -1 
+          }else {
+            currentIndex--;
+          }
+          displayMedia(currentIndex, photographerMedia)
+          
+        })
+
+        nextBtn.addEventListener('click', () => {
+          console.log(mediaIndex);
+          if(currentIndex +1 > photographerMedia.length -1 ){
+            currentIndex = 0
+          }else {
+            currentIndex++;
+          }
+          displayMedia(currentIndex, photographerMedia); 
+        })
+
+      });
+    });
+    const modalLike = document.getElementById('like');
+    modalLike.innerHTML = totalLike;
+      
 
     mediaContainer.appendChild(articleSection);
 
@@ -77,7 +126,7 @@ async function factoryMedia() {
       const selectedOption = event.target.value;
       if (selectedOption === "Date") {
         console.log("Option Date sélectionnée");
-        
+
         // Triez les images par date
         photographerMedia.sort((a, b) => new Date(a.date) - new Date(b.date));
       } else if (selectedOption === "Titre") {
@@ -86,9 +135,9 @@ async function factoryMedia() {
         photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
       } else if (selectedOption === "Popularité") {
         console.log("Option Popularité sélectionnée");
-        // Triez les images par popularité 
+        // Triez les images par popularité
         photographerMedia.sort((a, b) => b.likes - a.likes);
-        }
+      }
 
       // Effacez le contenu de articleSection
       articleSection.innerHTML = "";

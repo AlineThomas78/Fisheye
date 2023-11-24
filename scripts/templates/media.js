@@ -14,7 +14,7 @@ export function mediaTemplate(media) {
     const select = document.createElement("select");
     select.classList.add("sort-select");
 
-    const options = ["Popularité", "Date", "Titre"];
+    const options = ["selectionnez","Popularité", "Date", "Titre"];
     options.forEach((optionText) => {
       const option = document.createElement("option");
       option.textContent = optionText;
@@ -68,9 +68,17 @@ export function mediaTemplate(media) {
     const likeImage = document.createElement("img");
     likeImage.setAttribute("src", imgLike);
     likeImage.classList.add("like-image");
+    likeImage.addEventListener('click', () => {
+      
+      
+      likesElement.textContent++
+      displayMedia();
+      console.log(likeImage)
+      
+    })
 
     article.appendChild(link);
-    link.appendChild(divContainer);
+    article.appendChild(divContainer)
     divContainer.appendChild(divTitle);
     divContainer.appendChild(divLikes);
     divTitle.appendChild(titleElement);
