@@ -42,8 +42,6 @@ initHeader();
 
 async function factoryMedia() {
   try {
-
-
     const data = await getPhotographers();
     const mediaContainer = document.querySelector(".factoryMedia");
 
@@ -65,56 +63,81 @@ async function factoryMedia() {
     const articleSection = document.createElement("div");
     articleSection.classList.add("article-section");
 
-      const closeModalBtn = document.getElementById('closeModalBtn');
-      closeModalBtn.addEventListener('click', () => {
-       
-        const carouselModal = document.querySelector(".carouselModal")
-        carouselModal.style.display = "none";
-        
-      })
-      let totalLike = 0;
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    closeModalBtn.addEventListener("click", () => {
+      const carouselModal = document.querySelector(".carouselModal");
+      carouselModal.style.display = "none";
+    });
+    let totalLike = 0;
     photographerMedia.forEach((media, mediaIndex) => {
-      totalLike+= media.likes;
+      totalLike += media.likes;
       const mediaElement = mediaTemplate(media).displayMedia();
       articleSection.appendChild(mediaElement);
-      
-      
+
       // Ajoutez un gestionnaire de clic pour chaque image
       mediaElement.firstElementChild.addEventListener("click", () => {
-        const carouselModal = document.querySelector(".carouselModal")
+        const carouselModal = document.querySelector(".carouselModal");
+        carouselModal.setAttribute("aria-label", "image closeup view");
+
         carouselModal.style.display = "flex";
+        
         console.log(mediaIndex);
         displayMedia(mediaIndex, photographerMedia);
-        const previousBtn = document.querySelector('.previousBtn');
-        const nextBtn = document.querySelector('.nextBtn');
+        const previousBtn = document.querySelector(".previousBtn");
+        const nextBtn = document.querySelector(".nextBtn");
 
         let currentIndex = mediaIndex;
-        previousBtn.addEventListener('click', () => {
-          console.log(mediaIndex);
-          if(currentIndex -1 < 0){
-            currentIndex = photographerMedia.length -1 
-          }else {
+
+        function goPrevious() {
+          if (currentIndex - 1 < 0) {
+            currentIndex = photographerMedia.length - 1;
+          } else {
             currentIndex--;
           }
-          displayMedia(currentIndex, photographerMedia)
-          
-        })
+          displayMedia(currentIndex, photographerMedia);
+        }
 
-        nextBtn.addEventListener('click', () => {
-          console.log(mediaIndex);
-          if(currentIndex +1 > photographerMedia.length -1 ){
-            currentIndex = 0
-          }else {
+        function goNext() {
+          if (currentIndex + 1 > photographerMedia.length - 1) {
+            currentIndex = 0;
+          } else {
             currentIndex++;
           }
-          displayMedia(currentIndex, photographerMedia); 
-        })
+          displayMedia(currentIndex, photographerMedia);
+        }
 
+        previousBtn.addEventListener("click", () => {
+          console.log(mediaIndex);
+          goPrevious();
+        });
+
+        nextBtn.addEventListener("click", () => {
+          console.log(mediaIndex);
+          goNext();
+        });
+        // Gestionnaire d'événements pour la touche gauche
+        document.addEventListener("keydown", (event) => {
+          if (carouselModal.style.display === "flex") {
+            if (event.key === "ArrowLeft") {
+              goPrevious()
+            }
+            if (event.key === "ArrowRight") {
+              goNext()
+            }
+          }
+        });
       });
     });
-    const modalLike = document.getElementById('like');
-    modalLike.innerHTML = totalLike;
-      
+    // MODAL LIKE //
+    const modalLike = document.querySelector(".likes");
+    modalLike.innerHTML = `<div class="contentLikes"><span class="spanPrice">${totalLike}</span><img class="priceImg" src="../../public/assets/images/heartBlack.png"></div>`;
+    // const image = document.createElement('img');
+    // image.src('../../public/assets/images/like.png')
+    // modalLike.appendChild(image);
+
+    const priceDays = document.querySelector(".price");
+    const photographer = data.photographers.find((d) => d.id == photographerId);
+    priceDays.innerHTML = `${photographer.price} € /jour`;
 
     mediaContainer.appendChild(articleSection);
 

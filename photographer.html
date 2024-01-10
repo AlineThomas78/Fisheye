@@ -2,6 +2,7 @@
 <html>
   <head>
     <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/public/css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/public/assets/favicon.png" />
     <link
@@ -37,20 +38,20 @@
           <img src="/public/assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form id="contactForm">
-					<div>
-						<label class="label">Prénom</label>
-						<input type="text" class="inputName">
-
-            <label class="label">Nom</label>
-						<input type="text" class="inputFirstName" />
-
-            <label class="label">Email</label>
-						<input type="email" class="inputEmail">
-
-            <label class="label">Votre message</label>
-						<textarea class="textArea"></textarea>
-					</div>
-          <button class="contact_button" onclick="contactForm()" >Envoyer</button>
+          <div>
+            <label for="inputName" class="label">Prénom</label>
+            <input type="text" id="inputName" class="inputName" aria-labelledby="inputNameLabel">
+        
+            <label for="inputFirstName" class="label">Nom</label>
+            <input type="text" id="inputFirstName" class="inputFirstName" aria-labelledby="inputFirstNameLabel">
+        
+            <label for="inputEmail" class="label">Email</label>
+            <input type="email" id="inputEmail" class="inputEmail" aria-labelledby="inputEmailLabel">
+        
+            <label for="textArea" class="label">Votre message</label>
+            <textarea id="textArea" class="textArea" aria-labelledby="textAreaLabel"></textarea>
+          </div>
+          <button class="contact_button" >Envoyer</button>
 				</form>
 			</div>
 		</div>
@@ -71,7 +72,12 @@
         </div>
       </div>
     </div>
-    <div id="like"></div>
+    <div id="like">
+      <div class="content">
+        <div class="likes"></div>
+        <div class="price"></div>
+      </div>
+    </div>
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script  src="/scripts/utils/contactForm.js"></script>
     <script  src="/scripts/templates/contactForm.js"></script>

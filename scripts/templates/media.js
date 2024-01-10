@@ -10,11 +10,14 @@ export function mediaTemplate(media) {
 
     const label = document.createElement("label");
     label.textContent = "Trier par :";
+    label.classList.add("selectLabel");
 
     const select = document.createElement("select");
+    select.setAttribute("aria-labelledby", "Order by");
     select.classList.add("sort-select");
+    
 
-    const options = ["selectionnez","Popularité", "Date", "Titre"];
+    const options = ["Selectionnez", "Popularité", "Date", "Titre"];
     options.forEach((optionText) => {
       const option = document.createElement("option");
       option.textContent = optionText;
@@ -23,13 +26,19 @@ export function mediaTemplate(media) {
 
     sortDiv.appendChild(label);
     sortDiv.appendChild(select);
-
+    select.setAttribute("tabindex", "0");
     return sortDiv;
   }
 
   function displayMedia() {
     const article = document.createElement("article");
     article.classList.add("article");
+    article.setAttribute("tabindex", "0")
+
+    article.setAttribute("role", "dialog");
+    article.setAttribute("aria-label", "Carrousel d'images");
+
+    
 
     const link = document.createElement("a");
     link.classList.add("link");
@@ -45,6 +54,7 @@ export function mediaTemplate(media) {
       // Créez un élément img si c'est une image
       const img = document.createElement("img");
       img.setAttribute("src", mediaSource);
+      img.setAttribute("alt", `${media.title}, closeup view`);
       img.classList.add("img");
       link.appendChild(img);
     }
@@ -68,31 +78,34 @@ export function mediaTemplate(media) {
     const likeImage = document.createElement("img");
     likeImage.setAttribute("src", imgLike);
     likeImage.classList.add("like-image");
-    likeImage.addEventListener('click', () => {
-      
-      
-      likesElement.textContent++
-      displayMedia();
-      console.log(likeImage)
-      
-    })
+    likeImage.addEventListener("click", () => {
+      likesElement.textContent++;
+
+      const totalLike = document.querySelector(".spanPrice");
+
+      totalLike.innerHTML = (Number(totalLike.innerHTML) + 1).toString();
+
+      // displayMedia();
+      console.log(totalLike);
+    });
 
     article.appendChild(link);
-    article.appendChild(divContainer)
+    article.appendChild(divContainer);
     divContainer.appendChild(divTitle);
     divContainer.appendChild(divLikes);
     divTitle.appendChild(titleElement);
     divLikes.appendChild(likesElement);
     divLikes.appendChild(likeImage);
 
-    
-    return article ;
+    return article;
   }
 
-  return { title, isVideo, mediaSource, likes, displayMedia, createSortSection};
+  return {
+    title,
+    isVideo,
+    mediaSource,
+    likes,
+    displayMedia,
+    createSortSection,
+  };
 }
-
-
-
-
-

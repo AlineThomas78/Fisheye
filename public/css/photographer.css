@@ -1,7 +1,8 @@
 main {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* width: 100%;
+  height: 100%; */
 }
 
 #contact_modal {
@@ -10,12 +11,13 @@ main {
   width: 100%;
   height: 100%;
   background-color: white;
+  z-index: 1;
 }
 
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,7 +129,7 @@ form input {
 
 .factoryMedia {
   margin: 0 100px;
-  position: absolute;
+  
 }
 
 .article-section {
@@ -137,8 +139,12 @@ form input {
   justify-content: space-between;
 }
 
+.selectLabel{
+  font-weight: bold;
+}
+
 .sort-section {
-  width: 25%;
+  width: 20%;
   height: 100px;
   display: flex;
   justify-content: space-between;
@@ -158,7 +164,7 @@ form input {
   font-family: "DM SANS";
   border-radius: 5px;
   padding: 5px;
-  outline: none;
+  /* outline: none; */
 }
 
 .sort-select option.selected {
@@ -231,6 +237,7 @@ p {
   height: 100%;
   background-color: #fefefe;
   justify-content: center;
+  z-index: 9999;
 }
 
 /* Modal Content */
