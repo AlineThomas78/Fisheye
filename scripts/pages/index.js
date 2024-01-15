@@ -18,7 +18,7 @@ import { photographerTemplate } from '../templates/photographer.js';
       console.error('Une erreur est survenue lors de la récupération des données :', error);
       return {
         photographers: [],
-        media:[], // Vous pouvez renvoyer un tableau vide ou gérer l'erreur autrement.
+        media:[], 
       };
     }
   }
@@ -39,4 +39,8 @@ async function init() {
   displayData(photographers);
 }
 
-init();
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+  initHeader();
+  factoryMedia();
+});

@@ -7,6 +7,7 @@ import { displayMedia } from "../templates/modal.js";
 const params = new URLSearchParams(window.location.search);
 const photographerId = params.get("id");
 
+
 async function displayPhotographer(photographerData) {
   const sectionInfo = document.querySelector(".photograph-info");
 
@@ -45,9 +46,9 @@ async function factoryMedia() {
     const data = await getPhotographers();
     const mediaContainer = document.querySelector(".factoryMedia");
 
-    // Récupérer l'ID du photographe à partir des paramètres de recherche
-    const params = new URLSearchParams(window.location.search);
-    const photographerId = params.get("id");
+    // // Récupérer l'ID du photographe à partir des paramètres de recherche
+    // const params = new URLSearchParams(window.location.search);
+    // const photographerId = params.get("id");
 
     // Filtrer les médias en fonction de l'ID du photographe
     const photographerMedia = data.media.filter(

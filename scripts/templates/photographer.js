@@ -23,7 +23,7 @@ export function photographerTemplate(photographers) {
 
     // Ajoutez un gestionnaire d'événement au lien pour la redirection
     link.addEventListener("click", function (event) {
-      event.preventDefault(); // Empêche le lien de naviguer immédiatement
+      event.preventDefault();
       window.location.href = link.href; // Redirige l'utilisateur vers la page photographer.html
     });
 
