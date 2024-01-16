@@ -76,7 +76,7 @@ export function mediaTemplate(media) {
     likesElement.textContent = likes;
 
     const likeImage = document.createElement("img");
-    likeImage.setAttribute("src", imgLike);
+    likeImage.setAttribute("src", `./${imgLike}`);
     likeImage.classList.add("like-image");
     likeImage.addEventListener("click", () => {
       likesElement.textContent++;

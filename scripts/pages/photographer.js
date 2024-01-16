@@ -7,7 +7,6 @@ import { displayMedia } from "../templates/modal.js";
 const params = new URLSearchParams(window.location.search);
 const photographerId = params.get("id");
 
-
 async function displayPhotographer(photographerData) {
   const sectionInfo = document.querySelector(".photograph-info");
 
@@ -17,7 +16,7 @@ async function displayPhotographer(photographerData) {
 }
 
 async function initHeader() {
-  try { 
+  try {
     const data = await getPhotographers();
 
     // Recherche du photographe correspondant à l'ID
@@ -81,7 +80,7 @@ async function factoryMedia() {
         carouselModal.setAttribute("aria-label", "image closeup view");
 
         carouselModal.style.display = "flex";
-        
+
         console.log(mediaIndex);
         displayMedia(mediaIndex, photographerMedia);
         const previousBtn = document.querySelector(".previousBtn");
@@ -120,10 +119,10 @@ async function factoryMedia() {
         document.addEventListener("keydown", (event) => {
           if (carouselModal.style.display === "flex") {
             if (event.key === "ArrowLeft") {
-              goPrevious()
+              goPrevious();
             }
             if (event.key === "ArrowRight") {
-              goNext()
+              goNext();
             }
           }
         });
@@ -131,10 +130,11 @@ async function factoryMedia() {
     });
     // MODAL LIKE //
     const modalLike = document.querySelector(".likes");
-    modalLike.innerHTML = `<div class="contentLikes"><span class="spanPrice">${totalLike}</span><img class="priceImg" src="../../public/assets/images/heartBlack.png"></div>`;
-    // const image = document.createElement('img');
-    // image.src('../../public/assets/images/like.png')
-    // modalLike.appendChild(image);
+    modalLike.innerHTML = `<div class="contentLikes">
+       <span class="spanPrice">${totalLike}</span>
+       <img class="priceImg" alt="icone en forme de coeur"
+             src="../../public/assets/images/heartBlack.png">
+    </div>`;
 
     const priceDays = document.querySelector(".price");
     const photographer = data.photographers.find((d) => d.id == photographerId);
