@@ -17,7 +17,7 @@ async function displayPhotographer(photographerData) {
 }
 
 async function initHeader() {
-  try {
+  try { 
     const data = await getPhotographers();
 
     // Recherche du photographe correspondant à l'ID

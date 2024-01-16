@@ -6,11 +6,11 @@ export function photographerTemplate(photographers) {
   function getUserCardDOM() {
     const article = document.createElement("article");
     const link = document.createElement("a");
-    link.href = `/photographer.html?id=${id}`;
+    link.href = `./photographer.html?id=${id}`;
 
     const img = document.createElement("img");
 
-    img.setAttribute("src", picture);
+    img.setAttribute("src", `./${picture}`);
     const h2 = document.createElement("h2");
     h2.textContent = name;
     const localisation = document.createElement("h5");
