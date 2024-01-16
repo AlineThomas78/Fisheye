@@ -6,7 +6,7 @@ export function photographerTemplate(photographers) {
   function getUserCardDOM() {
     const article = document.createElement("article");
     const link = document.createElement("a");
-    link.href = `../../scripts/template/photographer.html?id=${id}`;
+    link.href = `../../scripts/templates/photographer.html?id=${id}`;
     
     const img = document.createElement("img");
 
