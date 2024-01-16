@@ -2,7 +2,7 @@ export function mediaTemplate(media) {
   const { title, image, likes, video } = media;
   const isVideo = video !== undefined;
   const mediaSource = isVideo ? video : image;
-  const imgLike = "../../public/assets/images/like.png";
+  const imgLike = "./public/assets/images/like.png";
 
   function createSortSection() {
     const sortDiv = document.createElement("div");

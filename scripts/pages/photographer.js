@@ -133,7 +133,7 @@ async function factoryMedia() {
     modalLike.innerHTML = `<div class="contentLikes">
        <span class="spanPrice">${totalLike}</span>
        <img class="priceImg" alt="icone en forme de coeur"
-             src="../../public/assets/images/heartBlack.png">
+             src="./public/assets/images/heartBlack.png">
     </div>`;
 
     const priceDays = document.querySelector(".price");
