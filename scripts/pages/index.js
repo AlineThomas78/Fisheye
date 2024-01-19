@@ -39,8 +39,10 @@ async function init() {
   displayData(photographers);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+if (
+  window.location.pathname === "/index.html" ||
+  window.location.pathname === "/"
+) {
   init();
-  initHeader();
-  factoryMedia();
-});
+}
+

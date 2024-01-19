@@ -12,7 +12,6 @@ async function displayPhotographer(photographerData) {
 
   const photographerModel = photographerTemplate(photographerData);
   const userCardDOM = photographerModel.getPhotographersHeader();
-  // sectionInfo.appendChild(userCardDOM);
 }
 
 async function initHeader() {
@@ -45,15 +44,10 @@ async function factoryMedia() {
     const data = await getPhotographers();
     const mediaContainer = document.querySelector(".factoryMedia");
 
-    // // Récupérer l'ID du photographe à partir des paramètres de recherche
-    // const params = new URLSearchParams(window.location.search);
-    // const photographerId = params.get("id");
-
     // Filtrer les médias en fonction de l'ID du photographe
     const photographerMedia = data.media.filter(
       (media) => media.photographerId === parseInt(photographerId)
     );
-    // console.log(photographerMedia)
 
     // Créer la section de tri et ajouter à la factoryMedia
     const mediaInstance = mediaTemplate(photographerMedia);
@@ -68,72 +62,75 @@ async function factoryMedia() {
       const carouselModal = document.querySelector(".carouselModal");
       carouselModal.style.display = "none";
     });
+
     let totalLike = 0;
-    photographerMedia.forEach((media, mediaIndex) => {
-      totalLike += media.likes;
-      const mediaElement = mediaTemplate(media).displayMedia();
-      articleSection.appendChild(mediaElement);
+    function displayEveryMedia() {
+      photographerMedia.forEach((media, mediaIndex) => {
+        totalLike += media.likes;
+        const mediaElement = mediaTemplate(media).displayMedia();
+        articleSection.appendChild(mediaElement);
 
-      // Ajoutez un gestionnaire de clic pour chaque image
-      mediaElement.firstElementChild.addEventListener("click", () => {
-        const carouselModal = document.querySelector(".carouselModal");
-        carouselModal.setAttribute("aria-label", "image closeup view");
+        // Ajoutez un gestionnaire de clic pour chaque image
+        mediaElement.firstElementChild.addEventListener("click", () => {
+          const carouselModal = document.querySelector(".carouselModal");
+          carouselModal.setAttribute("aria-label", "image closeup view");
+          carouselModal.style.display = "flex";
 
-        carouselModal.style.display = "flex";
+          displayMedia(mediaIndex, photographerMedia);
+          const previousBtn = document.querySelector(".previousBtn");
+          const nextBtn = document.querySelector(".nextBtn");
 
-        console.log(mediaIndex);
-        displayMedia(mediaIndex, photographerMedia);
-        const previousBtn = document.querySelector(".previousBtn");
-        const nextBtn = document.querySelector(".nextBtn");
+          let currentIndex = mediaIndex;
 
-        let currentIndex = mediaIndex;
-
-        function goPrevious() {
-          if (currentIndex - 1 < 0) {
-            currentIndex = photographerMedia.length - 1;
-          } else {
-            currentIndex--;
-          }
-          displayMedia(currentIndex, photographerMedia);
-        }
-
-        function goNext() {
-          if (currentIndex + 1 > photographerMedia.length - 1) {
-            currentIndex = 0;
-          } else {
-            currentIndex++;
-          }
-          displayMedia(currentIndex, photographerMedia);
-        }
-
-        previousBtn.addEventListener("click", () => {
-          console.log(mediaIndex);
-          goPrevious();
-        });
-
-        nextBtn.addEventListener("click", () => {
-          console.log(mediaIndex);
-          goNext();
-        });
-        // Gestionnaire d'événements pour la touche gauche
-        document.addEventListener("keydown", (event) => {
-          if (carouselModal.style.display === "flex") {
-            if (event.key === "ArrowLeft") {
-              goPrevious();
+          function goPrevious() {
+            if (currentIndex - 1 < 0) {
+              currentIndex = photographerMedia.length - 1;
+            } else {
+              currentIndex--;
             }
-            if (event.key === "ArrowRight") {
-              goNext();
-            }
+            displayMedia(currentIndex, photographerMedia);
           }
+
+          function goNext() {
+            if (currentIndex + 1 > photographerMedia.length - 1) {
+              currentIndex = 0;
+            } else {
+              currentIndex++;
+            }
+            displayMedia(currentIndex, photographerMedia);
+          }
+
+          previousBtn.addEventListener("click", () => {
+            goPrevious();
+          });
+
+          nextBtn.addEventListener("click", () => {
+            goNext();
+          });
+          // Gestionnaire d'événements pour les touches fleches
+          document.addEventListener("keydown", (event) => {
+            if (carouselModal.style.display === "flex") {
+              if (event.key === "ArrowLeft") {
+                goPrevious();
+              }
+              if (event.key === "ArrowRight") {
+                goNext();
+              }
+            }
+          });
         });
       });
-    });
+    }
+    displayEveryMedia();
+
     // MODAL LIKE //
     const modalLike = document.querySelector(".likes");
-    modalLike.innerHTML = `<div class="contentLikes">
+    modalLike.innerHTML = `
+    <div class="contentLikes">
        <span class="spanPrice">${totalLike}</span>
        <img class="priceImg" alt="icone en forme de coeur"
-             src="./public/assets/images/heartBlack.png">
+             src="./public/assets/images/heartBlack.png"
+        >
     </div>`;
 
     const priceDays = document.querySelector(".price");
@@ -146,32 +143,23 @@ async function factoryMedia() {
     const selectElement = document.querySelector(".sort-select");
     // Écoutez les changements de sélection dans le select
     selectElement.addEventListener("change", (event) => {
-      console.log("Changement détecté !");
       const selectedOption = event.target.value;
       if (selectedOption === "Date") {
-        console.log("Option Date sélectionnée");
 
         // Triez les images par date
         photographerMedia.sort((a, b) => new Date(a.date) - new Date(b.date));
       } else if (selectedOption === "Titre") {
-        console.log("Option Titre sélectionnée");
         // Triez les images par titre
         photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
       } else if (selectedOption === "Popularité") {
-        console.log("Option Popularité sélectionnée");
         // Triez les images par popularité
         photographerMedia.sort((a, b) => b.likes - a.likes);
       }
-
+      
       // Effacez le contenu de articleSection
       articleSection.innerHTML = "";
-
-      // Affichage des images triées
-      photographerMedia.forEach((media) => {
-        const mediaElement = mediaTemplate(media).displayMedia();
-        articleSection.appendChild(mediaElement);
-        console.log(media.title, media.likes, media.date);
-      });
+      // Afficher les media triés de la même manière
+      displayEveryMedia();
     });
   } catch (error) {
     console.error("Une erreur s'est produite : ", error);

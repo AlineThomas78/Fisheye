@@ -4,6 +4,7 @@ export function displayMedia(mediaIndex, allMedia) {
     if (_media.image) {
       const imageElement = document.createElement("img");
       imageElement.classList.add("imgCurrentMedia");
+      imageElement.setAttribute("alt", "liste d'image du photographe");
       imageElement.src = _media.image;
       currentMedia.appendChild(imageElement);
 

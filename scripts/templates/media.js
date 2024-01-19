@@ -30,6 +30,7 @@ export function mediaTemplate(media) {
     return sortDiv;
   }
 
+  //Carousel
   function displayMedia() {
     const article = document.createElement("article");
     article.classList.add("article");
@@ -37,8 +38,6 @@ export function mediaTemplate(media) {
 
     article.setAttribute("role", "dialog");
     article.setAttribute("aria-label", "Carrousel d'images");
-
-    
 
     const link = document.createElement("a");
     link.classList.add("link");
@@ -79,14 +78,12 @@ export function mediaTemplate(media) {
     likeImage.setAttribute("src", `./${imgLike}`);
     likeImage.classList.add("like-image");
     likeImage.addEventListener("click", () => {
-      likesElement.textContent++;
+    likesElement.textContent++;
 
-      const totalLike = document.querySelector(".spanPrice");
+    const totalLike = document.querySelector(".spanPrice");
 
-      totalLike.innerHTML = (Number(totalLike.innerHTML) + 1).toString();
+    totalLike.innerHTML = (Number(totalLike.innerHTML) + 1).toString();
 
-      // displayMedia();
-      console.log(totalLike);
     });
 
     article.appendChild(link);

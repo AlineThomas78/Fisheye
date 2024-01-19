@@ -10,7 +10,8 @@ export function photographerTemplate(photographers) {
     
     const img = document.createElement("img");
 
-    img.setAttribute("src", `./${picture}`);
+    img.setAttribute("src", `./${picture}` );
+    img.setAttribute("alt", "image portrait des photographes");
     const h2 = document.createElement("h2");
     h2.textContent = name;
     const localisation = document.createElement("h5");
