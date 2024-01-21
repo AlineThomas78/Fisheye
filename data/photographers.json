@@ -504,7 +504,7 @@
 			"id": 235234343,
 			"photographerId": 930,
 			"title": "Climber",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Sport_Next_Hold.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Sport_Next_Hold.jpg",
 			"likes": 101,
 			"date": "2018-03-05",
 			"price": 65
@@ -513,7 +513,7 @@
 			"id": 235343222,
 			"photographerId": 930,
 			"title": "Surfer",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Sport_water_tunnel.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Sport_water_tunnel.jpg",
 			"likes": 103,
 			"date": "2018-03-10",
 			"price": 70
@@ -522,7 +522,7 @@
 			"id": 7775342343,
 			"photographerId": 930,
 			"title": "Skier",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Sport_Sky_Cross.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Sport_Sky_Cross.jpg",
 			"likes": 77,
 			"date": "2018-04-16",
 			"price": 50
@@ -531,7 +531,7 @@
 			"id": 9253445784,
 			"photographerId": 930,
 			"title": "Race End",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Sport_Race_End.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Sport_Race_End.jpg",
 			"likes": 88,
 			"date": "2018-04-22",
 			"price": 65
@@ -540,7 +540,7 @@
 			"id": 22299394,
 			"photographerId": 930,
 			"title": "Jump!",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Sport_Jump.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Sport_Jump.jpg",
 			"likes": 95,
 			"date": "2018-04-27",
 			"price": 70
@@ -549,7 +549,7 @@
 			"id": 3452342633,
 			"photographerId": 930,
 			"title": "White Light",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Architecture_White_Light.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Architecture_White_Light.jpg",
 			"likes": 52,
 			"date": "2018-05-03",
 			"price": 75
@@ -558,7 +558,7 @@
 			"id": 939234243,
 			"photographerId": 930,
 			"title": "Water on Modern Building",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Architecture_Water_on_Modern.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Architecture_Water_on_Modern.jpg",
 			"likes": 55,
 			"date": "2018-05-10",
 			"price": 72
@@ -567,7 +567,7 @@
 			"id": 222959233,
 			"photographerId": 930,
 			"title": "Horseshoe",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Architecture_Horseshoe.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Architecture_Horseshoe.jpg",
 			"likes": 85,
 			"date": "2018-05-15",
 			"price": 71
@@ -576,7 +576,7 @@
 			"id": 965933434,
 			"photographerId": 930,
 			"title": "Cross Bar",
-			"image": "./public/assets/samplePhotos/Ellie Rose/Architecture_Cross_Bar.jpg",
+			"image": "./public/assets/samplePhotos/Ellie_Rose/Architecture_Cross_Bar.jpg",
 			"likes": 66,
 			"date": "2018-05-20",
 			"price": 58
