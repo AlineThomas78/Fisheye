@@ -138,7 +138,6 @@ async function factoryMedia() {
     priceDays.innerHTML = `${photographer.price} € /jour`;
 
     mediaContainer.appendChild(articleSection);
-
     // Section Select
     const selectElement = document.querySelector(".sort-select");
     // Écoutez les changements de sélection dans le select

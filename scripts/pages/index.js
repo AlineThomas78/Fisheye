@@ -41,7 +41,9 @@ async function init() {
 
 if (
   window.location.pathname === "/index.html" ||
-  window.location.pathname === "/"
+  window.location.pathname === "/" ||
+  window.location.pathname === "/Fisheye/index.html" ||
+  window.location.pathname === "/Fisheye/" 
 ) {
   init();
 }
